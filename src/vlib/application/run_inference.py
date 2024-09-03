@@ -1,4 +1,4 @@
-from vlib.domain.utils import get_inference_data, append_predictions
+from vlib.infrastructure.local_files import get_inference_data, append_predictions
 
 
 def infer():
