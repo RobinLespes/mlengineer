@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
 def train_vlib_model():
-    training_data = pd.read_csv("data/vlib.csv")
+    training_data = pd.read_csv("data/training_data.csv")
 
     training_data.datetime = pd.to_datetime(training_data.datetime)
     training_data["hour"] = training_data.datetime.dt.hour
