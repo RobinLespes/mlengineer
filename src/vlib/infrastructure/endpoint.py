@@ -2,9 +2,9 @@ import pandas as pd
 import mlflow
 from flask import Flask, request, jsonify
 
-model_name = "vlib_rf"
-model_version = "2"
-model = mlflow.pyfunc.load_model(f"models:/{model_name}/{model_version}")
+logged_model = 'runs:/da719023e235419c93c134c6fcf83301/model'
+
+model = mlflow.pyfunc.load_model(logged_model)
 app = Flask(__name__)
 @app.route('/predict', methods=['POST'])
 def predict():
