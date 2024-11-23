@@ -2,8 +2,10 @@ import pandas as pd
 import mlflow
 from flask import Flask, request, jsonify
 
+from vlib.config import const
+
 model_name = "vlib_rf"
-model_version = "2"
+model_version = "1"
 model = mlflow.pyfunc.load_model(f"models:/{model_name}/{model_version}")
 app = Flask(__name__)
 @app.route('/predict', methods=['POST'])
@@ -14,7 +16,7 @@ def predict():
             df = pd.DataFrame(data)
             predictions = model.predict(df)
             result = predictions.tolist()
-            return jsonify({'predictions': result})
+            return jsonify({const.PREDICTION: result})
 
         except Exception as e:
             return jsonify({'error': str(e)}), 500
