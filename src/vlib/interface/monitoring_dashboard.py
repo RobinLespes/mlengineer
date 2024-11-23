@@ -4,14 +4,16 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import plotly.express as px
 
+from vlib.config.const import PREDICTION, MEAN_ABSOLUTE_ERROR, DATETIME
+
 app = dash.Dash(__name__)
 
 def calculate_daily_mae():
     df = pd.read_csv('data/predictions.csv')
-    df['datetime'] = pd.to_datetime(df['datetime'])
-    df['date'] = df['datetime'].dt.date
-    df['mean_absolute_error'] = abs(df['count'] - df['prediction'])
-    daily_mae = df.groupby('date')['mean_absolute_error'].mean().reset_index()
+    df[DATETIME] = pd.to_datetime(df[DATETIME])
+    df['date'] = df[DATETIME].dt.date
+    df[MEAN_ABSOLUTE_ERROR] = abs(df['count'] - df[PREDICTION])
+    daily_mae = df.groupby('date')[MEAN_ABSOLUTE_ERROR].mean().reset_index()
     return daily_mae
 
 

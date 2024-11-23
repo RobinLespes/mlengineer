@@ -1,13 +1,16 @@
+from pathlib import Path
+
 import mlflow
 import mlflow.sklearn
 from mlflow.models import infer_signature
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import GridSearchCV
 
 from vlib.config.paths import TRACKING_URI, TRAINING_DATA_CSV
 from vlib.config.training_config import FEATURES, TARGET, RF_PARAMS
 from vlib.domain.feature_extractor import extract_date_features
-import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import GridSearchCV
+
 
 
 
@@ -15,7 +18,7 @@ mlflow.set_tracking_uri(TRACKING_URI)
 
 
 def train_vlib_model():
-    training_data = pd.read_csv(TRAINING_DATA_CSV)
+    training_data = pd.read_csv(Path(TRAINING_DATA_CSV))
     training_data = extract_date_features(training_data)
     X = training_data[FEATURES]
     Y = training_data[TARGET]
