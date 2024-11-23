@@ -12,6 +12,7 @@ from vlib.domain.type_convertor import convert_features_to_float
 def infer():
     """
     Do prediction on next date from inference dataset using model served on flask endpoint
+    If you launch inference script, you should see a new data point appearing in monitoring dashboard
     """
     url = MODEL_ENDPOINT_URL
     next_date_inference, predictions = get_inference_data()
