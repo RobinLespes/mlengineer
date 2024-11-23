@@ -1,11 +1,16 @@
 import os
 from datetime import date
+from pathlib import Path
+
 import pandas as pd
 
+from vlib.config.paths import PREDICTIONS_CSV, INFERENCE_DATA_CSV
+
+
 def get_inference_data():
-    inference_data = pd.read_csv("data/inference_data.csv")
+    inference_data = pd.read_csv(INFERENCE_DATA_CSV)
     inference_data["date"] = pd.to_datetime(inference_data.datetime).dt.date
-    file_path = "data/predictions.csv"
+    file_path = Path(PREDICTIONS_CSV)
     default_date = date(2012, 6, 19)
     if os.path.exists(file_path):
         predictions = pd.read_csv(file_path)
