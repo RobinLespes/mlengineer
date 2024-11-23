@@ -18,6 +18,9 @@ mlflow.set_tracking_uri(TRACKING_URI)
 
 
 def train_vlib_model():
+    """
+    Train random forest model performing gridsearch with cross validation
+    """
     training_data = pd.read_csv(Path(TRAINING_DATA_CSV))
     training_data = extract_date_features(training_data)
     X = training_data[FEATURES]

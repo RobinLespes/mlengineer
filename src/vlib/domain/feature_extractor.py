@@ -1,7 +1,12 @@
 import pandas as pd
 
 
-def extract_date_features(df):
+def extract_date_features(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Extract several features from date string: hour, year, weekday, month, date and day
+    :param df with column datetime in string:
+    :return: df_with_date_features
+    """
     df_with_date_features = df.copy()
     df_with_date_features.datetime = pd.to_datetime(df_with_date_features.datetime)
     df_with_date_features["hour"] = df_with_date_features.datetime.dt.hour

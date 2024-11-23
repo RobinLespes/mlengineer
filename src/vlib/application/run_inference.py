@@ -10,6 +10,9 @@ from vlib.domain.type_convertor import convert_features_to_float
 
 
 def infer():
+    """
+    Do prediction on next date from inference dataset using model served on flask endpoint
+    """
     url = MODEL_ENDPOINT_URL
     next_date_inference, predictions = get_inference_data()
     next_date_inference = extract_date_features(next_date_inference)

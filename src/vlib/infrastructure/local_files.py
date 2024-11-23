@@ -7,7 +7,7 @@ import pandas as pd
 from vlib.config.paths import PREDICTIONS_CSV, INFERENCE_DATA_CSV
 
 
-def get_inference_data():
+def get_inference_data() -> (pd.DataFrame, pd.DataFrame):
     inference_data = pd.read_csv(INFERENCE_DATA_CSV)
     inference_data["date"] = pd.to_datetime(inference_data.datetime).dt.date
     file_path = Path(PREDICTIONS_CSV)
@@ -24,7 +24,7 @@ def get_inference_data():
     return next_date_inference, predictions
 
 
-def append_predictions(next_date_inference, predictions):
+def append_predictions(next_date_inference: pd.DataFrame, predictions: pd.DataFrame) -> pd.DataFrame:
     if predictions is not None:
         predictions = pd.concat([predictions, next_date_inference], ignore_index=True)
     else:
