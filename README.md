@@ -6,7 +6,6 @@ Le projet **ml_engineer** a pour but de prédire le nombre de locations de vélo
 
 Nous utiliserons plusieurs outils pour montrer l'ensemble du cycle de vie d'un projet ML, incluant :
 
-- **Random Forest** et **Gridsearch** pour l'entrainement du modèle
 - **MLflow** pour la reproductibilité des expériences.
 - **Flask** pour le déploiement du modèle en tant que service web.
 - **Dash** pour la surveillance et la visualisation des performances du modèle.
